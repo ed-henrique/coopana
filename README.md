@@ -35,3 +35,13 @@ MYSQL_PASSWORD=;
 
 - Express (**WIP**)
 - MySQL (**WIP**)
+
+## Common Errors
+
+- `ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client`
+
+Execute the following command in MySQL:
+
+```sql
+ALTER USER 'MYSQL_USER'@'MYSQL_HOST' IDENTIFIED WITH mysql_native_password BY 'MYSQL_PASSWORD';
+```
