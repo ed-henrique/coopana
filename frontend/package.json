@@ -1,0 +1,26 @@
+{
+  "name": "coopana",
+  "version": "1.0.0",
+  "description": "graphical interface to show coopana data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ed-henrique/coopana.git"
+  },
+  "keywords": [
+    "db"
+  ],
+  "author": "Eduardo Henrique",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ed-henrique/coopana/issues"
+  },
+  "homepage": "https://github.com/ed-henrique/coopana#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
