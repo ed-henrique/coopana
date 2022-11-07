@@ -1,6 +1,8 @@
 import * as dotenv from "dotenv";
 import connection from "./connect_db.js";
 
+dotenv.config();
+
 const queries = [
 	`CREATE DATABASE ${process.env.DB_NAME}`,
 	`USE ${process.env.DB_NAME}`,

@@ -13,8 +13,6 @@ connection.connect((err: any) => {
 	if (err) {
 		throw err;
 	}
-
-	console.log("CONNECTED!");
 });
 
 export default connection;
