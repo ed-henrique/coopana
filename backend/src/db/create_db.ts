@@ -1,29 +1,58 @@
-import * as dotenv from "dotenv";
-import connection from "./connect_db.js";
+import { DataTypes } from "sequelize";
+import sequelize from "./connect_db.js";
 
-dotenv.config();
-
-const queries = [
-	`CREATE DATABASE ${process.env.DB_NAME}`,
-	`USE ${process.env.DB_NAME}`,
-	"CREATE TABLE COOPERADOS (COOPERADO_ID INT AUTO_INCREMENT PRIMARY KEY, NOME VARCHAR(255), ENDERECO VARCHAR(255), CPF INT, SITUACAO VARCHAR(255))",
-	"CREATE TABLE VEICULOS (VEICULO_ID INT AUTO_INCREMENT PRIMARY KEY, PLACA VARCHAR(255), FUNCIONARIO VARCHAR(255), ENTREGA VARCHAR(255), STATUS VARCHAR(255))",
-	"CREATE TABLE ENTREGAS (ENTREGA_ID INT AUTO_INCREMENT PRIMARY KEY, DESTINO VARCHAR(255), DESTINATARIO VARCHAR(255), CONTEUDO VARCHAR(255))",
-	"CREATE TABLE PROGRAMAS (PROGRAMA_ID INT AUTO_INCREMENT PRIMARY KEY, NOME VARCHAR(255), PRODUTOS VARCHAR(255), COOPERADOS VARCHAR(255), COTA VARCHAR(255))",
-	"CREATE TABLE FUNCIONARIOS (FUNCIONARIO_ID INT AUTO_INCREMENT PRIMARY KEY, NOME VARCHAR(255), FUNCAO VARCHAR(255), CONTATO VARCHAR(255), CPF VARCHAR(255), ENDERECO VARCHAR(255), RG INT, SALARIO INT)",
-	"CREATE TABLE BENEFICIADOS (BENEFICIADO_ID INT AUTO_INCREMENT PRIMARY KEY, NOME VARCHAR(255), CONTATO VARCHAR(255), PROGRAMA VARCHAR(255), ENDERECO VARCHAR(255))",
-	"CREATE TABLE FINANCEIRO (FINANCEIRO_ID INT AUTO_INCREMENT PRIMARY KEY, COOPERADOS VARCHAR(255), PROGRAMAS VARCHAR(255), FUNCIONARIOS VARCHAR(255))",
-	"SHOW FULL TABLES",
-];
-
-queries.forEach((query) => {
-	connection.query(query, (err, result) => {
-		if (err) {
-			throw err;
-		}
-
-		console.log(result);
-	});
+sequelize.define("Cooperado", {
+	nome: DataTypes.STRING,
+	endereco: DataTypes.STRING,
+	cpf: DataTypes.INTEGER,
+	situacao: DataTypes.STRING,
 });
 
-connection.end();
+sequelize.define("Veiculo", {
+	placa: DataTypes.STRING,
+	funcionario: DataTypes.STRING,
+	entrega: DataTypes.STRING,
+	status: DataTypes.STRING,
+});
+
+sequelize.define("Entrega", {
+	destino: DataTypes.STRING,
+	destinatario: DataTypes.STRING,
+	conteudo: DataTypes.STRING,
+});
+
+sequelize.define("Programa", {
+	nome: DataTypes.STRING,
+	produtos: DataTypes.STRING,
+	cooperados: DataTypes.STRING,
+	cota: DataTypes.STRING,
+});
+
+sequelize.define("Funcionario", {
+	nome: DataTypes.STRING,
+	funcao: DataTypes.STRING,
+	contato: DataTypes.STRING,
+	cpf: DataTypes.INTEGER,
+	salario: DataTypes.INTEGER,
+	rg: DataTypes.INTEGER,
+	endereco: DataTypes.STRING,
+});
+
+sequelize.define("Beneficiado", {
+	nome: DataTypes.STRING,
+	contato: DataTypes.STRING,
+	programa: DataTypes.STRING,
+	endereco: DataTypes.STRING,
+});
+
+sequelize.define("Financeiro", {
+	cooperados: DataTypes.STRING,
+	programas: DataTypes.STRING,
+	funcionarios: DataTypes.STRING,
+});
+
+await sequelize.sync({ force: true, match: /_test$/ });
+
+console.log("DB created successfully.");
+
+export default sequelize;

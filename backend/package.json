@@ -8,6 +8,7 @@
     "start": "ts-node-esm -T ./src/api/server.ts",
     "create": "ts-node-esm -T ./src/db/create_db.ts",
     "delete": "ts-node-esm -T ./src/db/delete_db.ts",
+    "connect": "ts-node-esm -T ./src/db/connect_db.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,13 +26,13 @@
   "homepage": "https://github.com/ed-henrique/coopana#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "mysql": "^2.18.1"
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.14",
-    "@types/mysql": "^2.15.21",
     "@types/node": "^18.11.9",
+    "sequelize": "^6.25.4",
+    "sqlite3": "^5.1.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   }
