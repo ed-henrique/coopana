@@ -1,33 +1,33 @@
-import sequelize from "./create_db.js";
+import db from "./create_db.js";
 
 async function addToDB(table: string, data: {}) {
 	switch (table) {
 		case "Cooperado": {
-			sequelize.Cooperado.create(data);
+			db.Cooperado.create(data);
 			break;
 		}
 		case "Veiculo": {
-			sequelize.Veiculo.create(data);
+			db.Veiculo.create(data);
 			break;
 		}
 		case "Entrega": {
-			sequelize.Entrega.create(data);
+			db.Entrega.create(data);
 			break;
 		}
 		case "Programa": {
-			sequelize.Programa.create(data);
+			db.Programa.create(data);
 			break;
 		}
 		case "Funcionario": {
-			sequelize.Funcionario.create(data);
+			db.Funcionario.create(data);
 			break;
 		}
 		case "Beneficiado": {
-			sequelize.Beneficiado.create(data);
+			db.Beneficiado.create(data);
 			break;
 		}
 		case "Financeiro": {
-			sequelize.Financeiro.create(data);
+			db.Financeiro.create(data);
 			break;
 		}
 		default:
