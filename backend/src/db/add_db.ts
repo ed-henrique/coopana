@@ -34,3 +34,7 @@ async function addToDB(table: string, data: {}) {
 			break;
 	}
 }
+
+export default {
+	addToDB,
+};

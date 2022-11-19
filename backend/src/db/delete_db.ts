@@ -7,32 +7,32 @@ async function dropAllTablesDB() {
 
 async function dropTableDB(table: string) {
 	switch (table) {
-		case "Cooperado": {
-			db.Cooperado.drop();
+		case "cooperado": {
+			await db.Cooperado.drop();
 			break;
 		}
-		case "Veiculo": {
-			db.Veiculo.drop();
+		case "veiculo": {
+			await db.Veiculo.drop();
 			break;
 		}
-		case "Entrega": {
-			db.Entrega.drop();
+		case "entrega": {
+			await db.Entrega.drop();
 			break;
 		}
-		case "Programa": {
-			db.Programa.drop();
+		case "programa": {
+			await db.Programa.drop();
 			break;
 		}
-		case "Funcionario": {
-			db.Funcionario.drop();
+		case "funcionario": {
+			await db.Funcionario.drop();
 			break;
 		}
-		case "Beneficiado": {
-			db.Beneficiado.drop();
+		case "beneficiado": {
+			await db.Beneficiado.drop();
 			break;
 		}
-		case "Financeiro": {
-			db.Financeiro.drop();
+		case "financeiro": {
+			await db.Financeiro.drop();
 			break;
 		}
 		default:
