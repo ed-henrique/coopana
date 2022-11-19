@@ -29,24 +29,25 @@ router.get("/", (req, res) => {
 // GETs
 
 routes.forEach((route) => {
-	router.get(`/${route}`, (_req, res) => {
-		res.send(route);
+	router.get(`/${route}`, async (_req, res) => {
+		res.send(await search.showDB("cooperado"));
 	});
 });
 
 // POSTs
 
 routes.forEach((route) => {
-	router.post(`/${route}`, (req, res) => {
+	router.post(`/${route}`, async (req, res) => {
 		const add_param = !!req.query.add;
 		const del_param = !!req.query.del;
-		const search_param = !!req.query.search;
+		const search_param = req.query.search?.toString();
 
 		if (add_param) {
-			add.addToDB(route.toLowerCase(), req.body);
+			await add.addToDB(route.toLowerCase(), req.body);
+			res.send("Added new data to DB!");
 		} else if (del_param) {
 		} else if (search_param) {
-			search.showDB();
+			res.send(await search.showDB(search_param));
 		} else {
 			res.send("No operation passed!");
 		}

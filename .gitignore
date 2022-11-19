@@ -157,3 +157,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# DB
+
+*.sqlite

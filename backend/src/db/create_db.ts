@@ -51,7 +51,7 @@ const Financeiro = sequelize.define("Financeiro", {
 	funcionarios: DataTypes.STRING,
 });
 
-await sequelize.sync({ force: true, match: /_test$/ });
+await sequelize.sync({ force: true });
 
 console.log("DB created successfully.");
 

@@ -2,32 +2,32 @@ import db from "./create_db.js";
 
 async function addToDB(table: string, data: {}) {
 	switch (table) {
-		case "Cooperado": {
-			db.Cooperado.create(data);
+		case "cooperado": {
+			await db.Cooperado.create(data);
 			break;
 		}
-		case "Veiculo": {
-			db.Veiculo.create(data);
+		case "veiculo": {
+			await db.Veiculo.create(data);
 			break;
 		}
-		case "Entrega": {
-			db.Entrega.create(data);
+		case "entrega": {
+			await db.Entrega.create(data);
 			break;
 		}
-		case "Programa": {
-			db.Programa.create(data);
+		case "programa": {
+			await db.Programa.create(data);
 			break;
 		}
-		case "Funcionario": {
-			db.Funcionario.create(data);
+		case "funcionario": {
+			await db.Funcionario.create(data);
 			break;
 		}
-		case "Beneficiado": {
-			db.Beneficiado.create(data);
+		case "beneficiado": {
+			await db.Beneficiado.create(data);
 			break;
 		}
-		case "Financeiro": {
-			db.Financeiro.create(data);
+		case "financeiro": {
+			await db.Financeiro.create(data);
 			break;
 		}
 		default:
