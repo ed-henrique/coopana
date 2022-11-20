@@ -1,10 +1,21 @@
-import { DataTypes } from "sequelize";
-import sequelize from "./connect_db.js";
+import fs from "fs";
+import * as dotenv from "dotenv";
+import { Sequelize, DataTypes } from "sequelize";
+
+dotenv.config();
 
 /*
 - Add foreign keys
 - Add optional values or NULL values
 */
+
+const sequelize = new Sequelize({
+	dialect: "sqlite",
+	storage: "./storage/db.sqlite",
+	define: {
+		freezeTableName: true,
+	},
+});
 
 const Cooperado = sequelize.define("Cooperado", {
 	nome: DataTypes.STRING,
@@ -56,9 +67,11 @@ const Financeiro = sequelize.define("Financeiro", {
 	funcionarios: DataTypes.STRING,
 });
 
-await sequelize.sync({ force: true });
-
-console.log("DB created successfully.");
+fs.readFile("./storage/db.sqlite", async (_err, data) => {
+	if (data.length === 0) {
+		await sequelize.sync({ force: true });
+	}
+});
 
 export default {
 	sequelize,

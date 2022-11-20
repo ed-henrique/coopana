@@ -8,48 +8,35 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-const routes = [
-	"cooperado",
-	"veiculo",
-	"entrega",
-	"programa",
-	"funcionario",
-	"beneficiado",
-	"financeiro",
-];
+// GET
 
-// Main Page
-
-router.get("/", (req, res) => {
-	res.send("Pagina inicial");
+router.get("/", async (req, res) => {
+	res.send(await search.showDB());
 });
 
-// GETs
+// POST
 
-routes.forEach((route) => {
-	router.get(`/${route}`, async (_req, res) => {
+router.post("/", async (req, res) => {
+	const add_param = !!req.query.add;
+	const del_param = !!req.query.del;
+	const search_param = req.query.search?.toString();
+	const table = req.query.table?.toString().toLowerCase();
+
+	// Priority Order
+	// ADD -> DEL -> SEARCH
+
+	if (add_param) {
+		await add.addToDB(table ?? "", req.body);
+		res.json("success");
+	} else if (del_param) {
+		await del.dropTableDB(table ?? "");
+		res.json("success");
+	} else if (search_param) {
 		res.send(await search.showDB());
-	});
-});
-
-// POSTs
-
-routes.forEach((route) => {
-	router.post(`/${route}`, async (req, res) => {
-		const add_param = !!req.query.add;
-		const del_param = !!req.query.del;
-		const search_param = req.query.search?.toString();
-
-		if (add_param) {
-			await add.addToDB(route.toLowerCase(), req.body);
-			res.send("Added new data to DB!");
-		} else if (del_param) {
-		} else if (search_param) {
-			res.send(await search.showDB());
-		} else {
-			res.send("No operation passed!");
-		}
-	});
+		res.json("success");
+	} else {
+		res.send("no valid operation passed!");
+	}
 });
 
 export default router;
