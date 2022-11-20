@@ -2,13 +2,11 @@ import add from "../db/add_db.js";
 import del from "../db/delete_db.js";
 import search from "../db/search_db.js";
 import express from "express";
-import cookieParser from "cookie-parser";
 
 const router = express.Router();
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
-router.use(cookieParser("Secret cookie"));
 
 const routes = [
 	"cooperado",

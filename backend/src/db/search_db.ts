@@ -1,5 +1,10 @@
 import db from "./create_db.js";
 
+/*
+- Add multiple search params
+- Add Meili Search for a better searching experience (optional)
+*/
+
 async function showDB() {
 	return {
 		cooperado: await db.Cooperado.findAll(),

@@ -1,6 +1,11 @@
 import { DataTypes } from "sequelize";
 import sequelize from "./connect_db.js";
 
+/*
+- Add foreign keys
+- Add optional values or NULL values
+*/
+
 const Cooperado = sequelize.define("Cooperado", {
 	nome: DataTypes.STRING,
 	endereco: DataTypes.STRING,

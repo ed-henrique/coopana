@@ -1,5 +1,9 @@
 import db from "./create_db.js";
 
+/*
+- Handle optional parameters (future)
+*/
+
 async function addToDB(table: string, data: {}) {
 	switch (table) {
 		case "cooperado": {

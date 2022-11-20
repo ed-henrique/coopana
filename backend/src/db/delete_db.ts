@@ -1,5 +1,9 @@
 import db from "./create_db.js";
 
+/*
+- Delete specific rows from table
+*/
+
 async function dropAllTablesDB() {
 	await db.sequelize.drop();
 	console.log("All tables dropped!");
