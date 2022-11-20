@@ -20,6 +20,7 @@ router.post("/", async (req, res) => {
 	const add_param = !!req.query.add;
 	const del_param = !!req.query.del;
 	const search_param = req.query.search?.toString();
+	const id = req.query.id?.toString() ?? "";
 	const table = req.query.table?.toString().toLowerCase();
 
 	// Priority Order
@@ -29,11 +30,10 @@ router.post("/", async (req, res) => {
 		await add.addToDB(table ?? "", req.body);
 		res.json("success");
 	} else if (del_param) {
-		await del.dropTableDB(table ?? "");
+		await del.dropRow(table ?? "", parseInt(id));
 		res.json("success");
 	} else if (search_param) {
-		res.send(await search.showDB());
-		res.json("success");
+		res.send(await search.searchRow(table ?? "", req.body));
 	} else {
 		res.send("no valid operation passed!");
 	}

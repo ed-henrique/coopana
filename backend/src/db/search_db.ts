@@ -41,7 +41,7 @@ async function showTable(table: string) {
 			return await db.Financeiro.findAll();
 		}
 		default:
-			return [];
+			break;
 	}
 }
 
@@ -49,37 +49,37 @@ async function searchRow(table: string, search_param: string) {
 	switch (table) {
 		case "cooperado": {
 			return await db.Cooperado.findAll({
-				where: { nome: search_param }
+				where: { nome: search_param },
 			});
 		}
 		case "veiculo": {
 			return await db.Veiculo.findAll({
-				where: { placa: search_param }
+				where: { placa: search_param },
 			});
 		}
 		case "entrega": {
 			return await db.Entrega.findAll({
-				where: { conteudo: search_param }
+				where: { conteudo: search_param },
 			});
 		}
 		case "programa": {
 			return await db.Programa.findAll({
-				where: { nome: search_param }
+				where: { nome: search_param },
 			});
 		}
 		case "funcionario": {
 			return await db.Funcionario.findAll({
-				where: { nome: search_param }
+				where: { nome: search_param },
 			});
 		}
 		case "beneficiado": {
 			return await db.Beneficiado.findAll({
-				where: { nome: search_param }
+				where: { nome: search_param },
 			});
 		}
 		case "financeiro": {
 			return await db.Financeiro.findAll({
-				where: { cooperados: search_param }
+				where: { cooperados: search_param },
 			});
 		}
 		default:
@@ -87,8 +87,51 @@ async function searchRow(table: string, search_param: string) {
 	}
 }
 
+async function searchById(table: string, id: number) {
+	switch (table) {
+		case "cooperado": {
+			return await db.Cooperado.findOne({
+				where: { id: id },
+			});
+		}
+		case "veiculo": {
+			return await db.Veiculo.findOne({
+				where: { id: id },
+			});
+		}
+		case "entrega": {
+			return await db.Entrega.findOne({
+				where: { id: id },
+			});
+		}
+		case "programa": {
+			return await db.Programa.findOne({
+				where: { id: id },
+			});
+		}
+		case "funcionario": {
+			return await db.Funcionario.findOne({
+				where: { id: id },
+			});
+		}
+		case "beneficiado": {
+			return await db.Beneficiado.findOne({
+				where: { id: id },
+			});
+		}
+		case "financeiro": {
+			return await db.Financeiro.findOne({
+				where: { id: id },
+			});
+		}
+		default:
+			break;
+	}
+}
+
 export default {
 	showDB,
 	showTable,
 	searchRow,
+	searchById,
 };

@@ -1,4 +1,5 @@
 import db from "./create_db.js";
+import search from "./search_db.js";
 
 /*
 - Delete specific rows from table
@@ -44,7 +45,13 @@ async function dropTableDB(table: string) {
 	}
 }
 
+async function dropRow(table: string, id: number) {
+	const rowToDestroy = await search.searchById(table, id);
+	rowToDestroy?.destroy();
+}
+
 export default {
 	dropTableDB,
 	dropAllTablesDB,
+	dropRow,
 };
