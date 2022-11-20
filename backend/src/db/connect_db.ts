@@ -5,7 +5,7 @@ dotenv.config();
 
 const sequelize = new Sequelize({
 	dialect: "sqlite",
-	storage: "./db_test.sqlite",
+	storage: "../storage/db.sqlite",
 	define: {
 		freezeTableName: true,
 	},

@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
 
 routes.forEach((route) => {
 	router.get(`/${route}`, async (_req, res) => {
-		res.send(await search.showDB("cooperado"));
+		res.send(await search.showDB());
 	});
 });
 
@@ -47,7 +47,7 @@ routes.forEach((route) => {
 			res.send("Added new data to DB!");
 		} else if (del_param) {
 		} else if (search_param) {
-			res.send(await search.showDB(search_param));
+			res.send(await search.showDB());
 		} else {
 			res.send("No operation passed!");
 		}
