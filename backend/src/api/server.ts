@@ -1,9 +1,10 @@
 import * as dotenv from "dotenv";
 import router from "./routes.js";
 import express from "express";
-import sequelize from "../db/connect_db.js";
+import db from "../db/create_db.js";
 
 dotenv.config();
+const sequelize = await db.sequelize.authenticate();
 
 const app = express();
 
@@ -15,7 +16,7 @@ try {
 	});
 
 	process.on("exit", async () => {
-		await sequelize.close();
+		await db.sequelize.close();
 	});
 } catch (err) {
 	throw err;
