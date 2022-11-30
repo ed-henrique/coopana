@@ -6,7 +6,6 @@ dotenv.config();
 
 /*
 - Add foreign keys
-- Add optional values or NULL values
 */
 
 const sequelize = new Sequelize({
@@ -18,53 +17,53 @@ const sequelize = new Sequelize({
 });
 
 const Cooperado = sequelize.define("Cooperado", {
-	nome: DataTypes.STRING,
-	endereco: DataTypes.STRING,
-	cpf: DataTypes.INTEGER,
-	situacao: DataTypes.STRING,
+	nome: { type: DataTypes.STRING, allowNull: false },
+	endereco: { type: DataTypes.STRING, allowNull: false },
+	cpf: { type: DataTypes.INTEGER, allowNull: false },
+	situacao: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Veiculo = sequelize.define("Veiculo", {
-	placa: DataTypes.STRING,
-	funcionario: DataTypes.STRING,
-	entrega: DataTypes.STRING,
-	status: DataTypes.STRING,
+	placa: { type: DataTypes.STRING, allowNull: false },
+	funcionario: { type: DataTypes.STRING, allowNull: false },
+	entrega: { type: DataTypes.STRING, allowNull: false },
+	status: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Entrega = sequelize.define("Entrega", {
-	destino: DataTypes.STRING,
-	destinatario: DataTypes.STRING,
-	conteudo: DataTypes.STRING,
+	destino: { type: DataTypes.STRING, allowNull: false },
+	destinatario: { type: DataTypes.STRING, allowNull: false },
+	conteudo: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Programa = sequelize.define("Programa", {
-	nome: DataTypes.STRING,
-	produtos: DataTypes.STRING,
-	cooperados: DataTypes.STRING,
-	cota: DataTypes.STRING,
+	nome: { type: DataTypes.STRING, allowNull: false },
+	produtos: { type: DataTypes.STRING, allowNull: false },
+	cooperados: { type: DataTypes.STRING, allowNull: false },
+	cota: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Funcionario = sequelize.define("Funcionario", {
-	nome: DataTypes.STRING,
-	funcao: DataTypes.STRING,
-	contato: DataTypes.STRING,
-	cpf: DataTypes.INTEGER,
-	salario: DataTypes.INTEGER,
-	rg: DataTypes.INTEGER,
-	endereco: DataTypes.STRING,
+	nome: { type: DataTypes.STRING, allowNull: false },
+	funcao: { type: DataTypes.STRING, allowNull: false },
+	contato: { type: DataTypes.STRING, allowNull: false },
+	cpf: { type: DataTypes.INTEGER, allowNull: false },
+	salario: { type: DataTypes.INTEGER, allowNull: false },
+	rg: { type: DataTypes.INTEGER, allowNull: false },
+	endereco: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Beneficiado = sequelize.define("Beneficiado", {
-	nome: DataTypes.STRING,
-	contato: DataTypes.STRING,
-	programa: DataTypes.STRING,
-	endereco: DataTypes.STRING,
+	nome: { type: DataTypes.STRING, allowNull: false },
+	contato: { type: DataTypes.STRING, allowNull: false },
+	programa: { type: DataTypes.STRING, allowNull: false },
+	endereco: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Financeiro = sequelize.define("Financeiro", {
-	cooperados: DataTypes.STRING,
-	programas: DataTypes.STRING,
-	funcionarios: DataTypes.STRING,
+	cooperados: { type: DataTypes.STRING, allowNull: false },
+	programas: { type: DataTypes.STRING, allowNull: false },
+	funcionarios: { type: DataTypes.STRING, allowNull: false },
 });
 
 fs.readFile("./storage/db.sqlite", async (_err, data) => {

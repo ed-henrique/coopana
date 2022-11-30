@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 	const table = req.query.table?.toString().toLowerCase();
 
 	// Priority Order
-	// ADD -> DEL -> SEARCH
+	// ADD -> DEL -> SEARCH -> UPDATE
 
 	if (add_param) {
 		await add.addToDB(table ?? "", req.body);
