@@ -18,9 +18,9 @@ Todas os métodos são utilizados na rota raiz (`/`).
 | Método HTTP | Função          | Parâmetros                                                                        |
 | :---------: | :-------------: | :-------------------------------------------------------------------------------- |
 | `POST`      | Adicionar dados |                                                                                   |
-| `GET`       | Buscar dados    | `show_all`: mostrar todo o banco de dados&nbsp;`table`: mostrar tabela específica |
-| `PUT`       | Atualizar dados | `table`: especificar tabela&nbsp;`id`: especificar id                             |
-| `DELETE`    | Remover dados   | `table`: especificar tabela&nbsp;`id`: especificar id                             |
+| `GET`       | Buscar dados    | `show_all`: mostrar todo o banco de dados<br />`table`: mostrar tabela específica |
+| `PUT`       | Atualizar dados | `table`: especificar tabela<br />`id`: especificar id                             |
+| `DELETE`    | Remover dados   | `table`: especificar tabela<br />`id`: especificar id                             |
 
 ### Exemplos de Uso
 
