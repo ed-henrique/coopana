@@ -27,13 +27,15 @@ Todas os métodos são utilizados na rota raiz (`/`).
 #### Adicionar Dados
 
 ```ts
-fetch("localhost:8080?table=cooperado", {
+fetch("localhost:8080?table=produtor", {
     method: 'POST',
     body: {
         nome: "joao",
-        endereco: "rua tal",
-        cpf: 12345678900,
-        situacao: "ok"
+        cpf: "12345678900",
+        dinheiro_disponivel: 4050.73,
+        dinheiro_entregue: 2382.01,
+        situacao: "ok",
+        endereco: "rua tal"
     },
 });
 ```
@@ -41,7 +43,7 @@ fetch("localhost:8080?table=cooperado", {
 #### Remover Dados
 
 ```ts
-fetch("localhost:8080?table=cooperado&id=3", {
+fetch("localhost:8080?table=produtor&id=3", {
     method: 'DELETE',
 });
 ```
@@ -49,13 +51,15 @@ fetch("localhost:8080?table=cooperado&id=3", {
 #### Atualizar Dados
 
 ```ts
-fetch("localhost:8080?table=cooperado&id=3", {
+fetch("localhost:8080?table=produtor&id=3", {
     method: 'PUT',
     body: {
-        nome: "jose",
-        endereco: "rua tal de tal",
-        cpf: 12246678800,
-        situacao: "ok"
+        nome: "joao",
+        cpf: "12242778990",
+        dinheiro_disponivel: 7550.73,
+        dinheiro_entregue: 3352.01,
+        situacao: "ok",
+        endereco: "rua tal e tal"
     },
 });
 ```
@@ -73,7 +77,7 @@ fetch("localhost:8080?show_all=true", {
 ##### Tabela Específica
 
 ```ts
-fetch("localhost:8080?table=cooperado", {
+fetch("localhost:8080?table=produtor", {
     method: 'GET',
 });
 ```
