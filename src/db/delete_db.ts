@@ -8,8 +8,8 @@ async function dropAllTablesDB() {
 
 async function dropTableDB(table: string) {
 	switch (table) {
-		case "cooperado": {
-			await db.Cooperado.drop();
+		case "produtor": {
+			await db.Produtor.drop();
 			break;
 		}
 		case "veiculo": {
@@ -18,6 +18,18 @@ async function dropTableDB(table: string) {
 		}
 		case "entrega": {
 			await db.Entrega.drop();
+			break;
+		}
+		case "produto": {
+			await db.Produto.drop();
+			break;
+		}
+		case "produto__por_produtor": {
+			await db.ProdutoPorProdutor.drop();
+			break;
+		}
+		case "relatorio": {
+			await db.Relatorio.drop();
 			break;
 		}
 		case "programa": {
@@ -32,8 +44,16 @@ async function dropTableDB(table: string) {
 			await db.Beneficiado.drop();
 			break;
 		}
-		case "financeiro": {
-			await db.Financeiro.drop();
+		case "financeiro_produtor": {
+			await db.FinanceiroProdutor.drop();
+			break;
+		}
+		case "financeiro_programa": {
+			await db.FinanceiroPrograma.drop();
+			break;
+		}
+		case "financeiro_funcionario": {
+			await db.FinanceiroFuncionario.drop();
 			break;
 		}
 		default:
