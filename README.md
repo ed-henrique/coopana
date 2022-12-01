@@ -1,33 +1,14 @@
 # COOPANA
 
-## How to run
+## Como usar a API
 
-### Backend
+Todas os métodos são utilizados na rota raiz (`/`).
 
-```bash
-cd backend
-npm install
-touch .env
+| Método HTTP | Função | Parâmetros opcionais |
+
+
+### Exemplos de uso
+
+```ts
+
 ```
-
-- Follow `.env.example` template, adding the values to the fields:
-
-```env
-DB_NAME=
-API_PORT=
-```
-
-- Run:
-
-`npm start`
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-```
-
-- Run:
-
-`npm start`
