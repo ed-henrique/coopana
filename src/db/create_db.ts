@@ -162,18 +162,18 @@ const FinanceiroFuncionario = sequelize.define("FinanceiroFuncionario", {
 	salario: { type: DataTypes.FLOAT, allowNull: false },
 });
 
-Entrega.hasOne(Produtor);
-Entrega.hasOne(Produto);
+Entrega.belongsTo(Produtor, { foreignKey: "cpf_produtor" });
+Entrega.belongsTo(Produto, { foreignKey: "nome_produto" });
 
-Beneficiado.hasOne(Programa);
+Beneficiado.belongsTo(Programa, { foreignKey: "nome_programa" });
 
-Veiculo.hasOne(Funcionario);
+Veiculo.belongsTo(Funcionario, { foreignKey: "cpf_funcionario" });
 
-Relatorio.hasMany(Produtor);
+Relatorio.belongsTo(Produtor, { foreignKey: "cpf_produtor" });
 
-FinanceiroProdutor.hasMany(Produtor);
-FinanceiroPrograma.hasMany(Programa);
-FinanceiroFuncionario.hasMany(Funcionario);
+FinanceiroProdutor.belongsTo(Produtor, { foreignKey: "cpf_produtor" });
+FinanceiroPrograma.belongsTo(Programa, { foreignKey: "nome_programa" });
+FinanceiroFuncionario.belongsTo(Funcionario, { foreignKey: "cpf_funcionario" });
 
 fs.readFile("./storage/db.sqlite", async (_err, data) => {
 	if (data?.length === 0) {
