@@ -29,6 +29,7 @@ const sequelize = new Sequelize({
 	storage: "./storage/db.sqlite",
 	define: {
 		freezeTableName: true,
+		timestamps: false,
 	},
 });
 
@@ -42,65 +43,137 @@ const Produtor = sequelize.define("Produtor", {
 });
 
 const Relatorio = sequelize.define("Relatorio", {
-	cpf_produtor: { type: DataTypes.STRING, allowNull: false },
+	cpf_produtor: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		references: {
+			model: Produtor,
+			key: "cpf",
+		},
+	},
 	valor_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
-const Veiculo = sequelize.define("Veiculo", {
-	placa: { type: DataTypes.STRING, allowNull: false, unique: true },
-	funcionario: { type: DataTypes.STRING, allowNull: false },
-	status: { type: DataTypes.STRING, allowNull: false },
+const Produto = sequelize.define("Produto", {
+	nome: { type: DataTypes.STRING, allowNull: false, unique: true },
+	valor_unitario: { type: DataTypes.FLOAT, allowNull: false },
 });
 
 const Entrega = sequelize.define("Entrega", {
-	cpf_produtor: { type: DataTypes.STRING, allowNull: false },
-	produto: { type: DataTypes.STRING, allowNull: false },
+	cpf_produtor: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		references: {
+			model: Produtor,
+			key: "cpf",
+		},
+	},
+	nome_produto: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		references: {
+			model: Produto,
+			key: "nome",
+		},
+	},
+	quantidade: { type: DataTypes.INTEGER, allowNull: false },
 	endereco: { type: DataTypes.STRING, allowNull: false },
-	valor_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
 const Programa = sequelize.define("Programa", {
-	nome: { type: DataTypes.STRING, allowNull: false },
+	nome: { type: DataTypes.STRING, allowNull: false, unique: true },
 	cota_atual: { type: DataTypes.FLOAT, allowNull: false },
 	cota_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
-const Produto = sequelize.define("Produto", {
-	nome: { type: DataTypes.STRING, allowNull: false },
-	valor_unitario: { type: DataTypes.FLOAT, allowNull: false },
-});
-
 const Funcionario = sequelize.define("Funcionario", {
 	nome: { type: DataTypes.STRING, allowNull: false },
-	funcao: { type: DataTypes.STRING, allowNull: false },
+	cargo: { type: DataTypes.STRING, allowNull: false },
 	contato: { type: DataTypes.STRING, allowNull: false },
-	cpf: { type: DataTypes.STRING, allowNull: false, unique: true },
 	salario: { type: DataTypes.FLOAT, allowNull: false },
+	cpf: { type: DataTypes.STRING, allowNull: false, unique: true },
 	rg: { type: DataTypes.STRING, allowNull: false, unique: true },
 	endereco: { type: DataTypes.STRING, allowNull: false },
+});
+
+const Veiculo = sequelize.define("Veiculo", {
+	placa: { type: DataTypes.STRING, allowNull: false, unique: true },
+	cpf_funcionario: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		references: {
+			model: Funcionario,
+			key: "cpf",
+		},
+	},
+	situacao: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Beneficiado = sequelize.define("Beneficiado", {
 	nome: { type: DataTypes.STRING, allowNull: false },
 	contato: { type: DataTypes.STRING, allowNull: false },
-	programa: { type: DataTypes.STRING, allowNull: false },
+	nome_programa: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		references: {
+			model: Programa,
+			key: "nome",
+		},
+	},
 	endereco: { type: DataTypes.STRING, allowNull: false },
 });
 
 const FinanceiroProdutor = sequelize.define("FinanceiroProdutor", {
-	nome_produtor: { type: DataTypes.STRING, allowNull: false },
+	cpf_produtor: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		unique: true,
+		references: {
+			model: Produtor,
+			key: "cpf",
+		},
+	},
 	valor_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
 const FinanceiroPrograma = sequelize.define("FinanceiroPrograma", {
-	nome_programa: { type: DataTypes.STRING, allowNull: false },
+	nome_programa: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		unique: true,
+		references: {
+			model: Programa,
+			key: "nome",
+		},
+	},
 	valor_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
 const FinanceiroFuncionario = sequelize.define("FinanceiroFuncionario", {
-	nome_funcionario: { type: DataTypes.STRING, allowNull: false },
+	cpf_funcionario: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		unique: true,
+		references: {
+			model: Funcionario,
+			key: "cpf",
+		},
+	},
 	salario: { type: DataTypes.FLOAT, allowNull: false },
 });
+
+Entrega.hasOne(Produtor);
+Entrega.hasOne(Produto);
+
+Beneficiado.hasOne(Programa);
+
+Veiculo.hasOne(Funcionario);
+
+Relatorio.hasMany(Produtor);
+
+FinanceiroProdutor.hasMany(Produtor);
+FinanceiroPrograma.hasMany(Programa);
+FinanceiroFuncionario.hasMany(Funcionario);
 
 fs.readFile("./storage/db.sqlite", async (_err, data) => {
 	if (data?.length === 0) {
