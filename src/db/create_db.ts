@@ -42,12 +42,8 @@ const Produtor = sequelize.define("Produtor", {
 });
 
 const Relatorio = sequelize.define("Relatorio", {
-	nome_produtor: { type: DataTypes.STRING, allowNull: false },
-	cpf: { type: DataTypes.STRING, allowNull: false },
-	produto: { type: DataTypes.STRING, allowNull: false },
-	valor_unitario: { type: DataTypes.FLOAT, allowNull: false },
-	quantidade_produto: { type: DataTypes.INTEGER, allowNull: false },
-	valor_total_produto: { type: DataTypes.FLOAT, allowNull: false },
+	cpf_produtor: { type: DataTypes.STRING, allowNull: false },
+	valor_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
 const Veiculo = sequelize.define("Veiculo", {
@@ -57,13 +53,10 @@ const Veiculo = sequelize.define("Veiculo", {
 });
 
 const Entrega = sequelize.define("Entrega", {
-	nome_produtor: { type: DataTypes.STRING, allowNull: false },
-	cpf: { type: DataTypes.STRING, allowNull: false },
+	cpf_produtor: { type: DataTypes.STRING, allowNull: false },
 	produto: { type: DataTypes.STRING, allowNull: false },
-	quantidade_produto: { type: DataTypes.INTEGER, allowNull: false },
 	endereco: { type: DataTypes.STRING, allowNull: false },
-	valor_unitario: { type: DataTypes.FLOAT, allowNull: false },
-	valor_total_produto: { type: DataTypes.FLOAT, allowNull: false },
+	valor_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
 const Programa = sequelize.define("Programa", {
@@ -75,13 +68,6 @@ const Programa = sequelize.define("Programa", {
 const Produto = sequelize.define("Produto", {
 	nome: { type: DataTypes.STRING, allowNull: false },
 	valor_unitario: { type: DataTypes.FLOAT, allowNull: false },
-});
-
-const ProdutoPorProdutor = sequelize.define("ProdutoPorProdutor", {
-	nome_produtor: { type: DataTypes.STRING, allowNull: false },
-	cpf: { type: DataTypes.STRING, allowNull: false },
-	produto: { type: DataTypes.STRING, allowNull: false },
-	quantidade: { type: DataTypes.INTEGER, allowNull: false },
 });
 
 const Funcionario = sequelize.define("Funcionario", {
@@ -117,7 +103,7 @@ const FinanceiroFuncionario = sequelize.define("FinanceiroFuncionario", {
 });
 
 fs.readFile("./storage/db.sqlite", async (_err, data) => {
-	if (data.length === 0) {
+	if (data?.length === 0) {
 		await sequelize.sync({ force: true });
 	}
 });
@@ -129,7 +115,6 @@ export default {
 	Entrega,
 	Produto,
 	Relatorio,
-	ProdutoPorProdutor,
 	Programa,
 	Funcionario,
 	Beneficiado,

@@ -24,10 +24,6 @@ async function dropTableDB(table: string) {
 			await db.Produto.drop();
 			break;
 		}
-		case "produto__por_produtor": {
-			await db.ProdutoPorProdutor.drop();
-			break;
-		}
 		case "relatorio": {
 			await db.Relatorio.drop();
 			break;

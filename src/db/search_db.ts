@@ -7,7 +7,6 @@ async function showDB() {
 		entrega: await db.Entrega.findAll(),
 		produto: await db.Produto.findAll(),
 		relatorio: await db.Relatorio.findAll(),
-		produto_por_produtor: await db.ProdutoPorProdutor.findAll(),
 		programa: await db.Programa.findAll(),
 		funcionario: await db.Funcionario.findAll(),
 		beneficiado: await db.Beneficiado.findAll(),
@@ -33,9 +32,6 @@ async function showTable(table: string) {
 		}
 		case "relatorio": {
 			return await db.Relatorio.findAll();
-		}
-		case "produto_por_produtor": {
-			return await db.ProdutoPorProdutor.findAll();
 		}
 		case "programa": {
 			return await db.Programa.findAll();
@@ -84,11 +80,6 @@ async function searchRow(table: string, search_param: string) {
 		}
 		case "relatorio": {
 			return await db.Relatorio.findAll({
-				where: { nome_produtor: search_param },
-			});
-		}
-		case "produto_por_produtor": {
-			return await db.ProdutoPorProdutor.findAll({
 				where: { nome_produtor: search_param },
 			});
 		}
@@ -151,11 +142,6 @@ async function searchById(table: string, id: number) {
 		}
 		case "relatorio": {
 			return await db.Relatorio.findOne({
-				where: { id: id },
-			});
-		}
-		case "produto_por_produtor": {
-			return await db.ProdutoPorProdutor.findOne({
 				where: { id: id },
 			});
 		}

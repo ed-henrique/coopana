@@ -17,9 +17,6 @@ async function addToDB(table: string, data: {}) {
 		case "relatorio": {
 			return await db.Relatorio.create(data);
 		}
-		case "produto_por_produtor": {
-			return await db.ProdutoPorProdutor.create(data);
-		}
 		case "programa": {
 			return await db.Programa.create(data);
 		}

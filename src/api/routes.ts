@@ -12,7 +12,7 @@ router.use(express.urlencoded({ extended: true }));
 // GET route to search through DB and/or specific tables
 
 router.get("/", async (req, res) => {
-	const show_all = req.query.show_all?.toString();
+	const show_all = !!req.query.show_all;
 	const table = req.query.table?.toString().toLowerCase();
 
 	if (show_all) {

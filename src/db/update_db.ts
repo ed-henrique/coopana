@@ -27,11 +27,6 @@ async function updateRow(table: string, id: number, data: {}) {
 				where: { id: id },
 			});
 		}
-		case "produto_por_produtor": {
-			return await db.ProdutoPorProdutor.update(data, {
-				where: { id: id },
-			});
-		}
 		case "programa": {
 			return await db.Programa.update(data, {
 				where: { id: id },
