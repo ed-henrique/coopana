@@ -2,26 +2,40 @@ import db from "./create_db.js";
 
 async function showDB() {
 	return {
-		cooperado: await db.Cooperado.findAll(),
+		produtor: await db.Produtor.findAll(),
 		veiculo: await db.Veiculo.findAll(),
 		entrega: await db.Entrega.findAll(),
+		produto: await db.Produto.findAll(),
+		relatorio: await db.Relatorio.findAll(),
+		produto_por_produtor: await db.ProdutoPorProdutor.findAll(),
 		programa: await db.Programa.findAll(),
 		funcionario: await db.Funcionario.findAll(),
 		beneficiado: await db.Beneficiado.findAll(),
-		financeiro: await db.Financeiro.findAll(),
+		financeiro_produtor: await db.FinanceiroProdutor.findAll(),
+		financeiro_programa: await db.FinanceiroPrograma.findAll(),
+		financeiro_funcionario: await db.FinanceiroFuncionario.findAll(),
 	};
 }
 
 async function showTable(table: string) {
 	switch (table) {
-		case "cooperado": {
-			return await db.Cooperado.findAll();
+		case "produtor": {
+			return await db.Produtor.findAll();
 		}
 		case "veiculo": {
 			return await db.Veiculo.findAll();
 		}
 		case "entrega": {
 			return await db.Entrega.findAll();
+		}
+		case "produto": {
+			return await db.Produto.findAll();
+		}
+		case "relatorio": {
+			return await db.Relatorio.findAll();
+		}
+		case "produto_por_produtor": {
+			return await db.ProdutoPorProdutor.findAll();
 		}
 		case "programa": {
 			return await db.Programa.findAll();
@@ -32,8 +46,14 @@ async function showTable(table: string) {
 		case "beneficiado": {
 			return await db.Beneficiado.findAll();
 		}
-		case "financeiro": {
-			return await db.Financeiro.findAll();
+		case "financeiro_produtor": {
+			return await db.FinanceiroProdutor.findAll();
+		}
+		case "financeiro_programa": {
+			return await db.FinanceiroPrograma.findAll();
+		}
+		case "financeiro_funcionario": {
+			return await db.FinanceiroFuncionario.findAll();
 		}
 		default:
 			break;
@@ -42,8 +62,8 @@ async function showTable(table: string) {
 
 async function searchRow(table: string, search_param: string) {
 	switch (table) {
-		case "cooperado": {
-			return await db.Cooperado.findAll({
+		case "produtor": {
+			return await db.Produtor.findAll({
 				where: { nome: search_param },
 			});
 		}
@@ -54,7 +74,22 @@ async function searchRow(table: string, search_param: string) {
 		}
 		case "entrega": {
 			return await db.Entrega.findAll({
-				where: { conteudo: search_param },
+				where: { nome_produtor: search_param },
+			});
+		}
+		case "produto": {
+			return await db.Produto.findAll({
+				where: { nome: search_param },
+			});
+		}
+		case "relatorio": {
+			return await db.Relatorio.findAll({
+				where: { nome_produtor: search_param },
+			});
+		}
+		case "produto_por_produtor": {
+			return await db.ProdutoPorProdutor.findAll({
+				where: { nome_produtor: search_param },
 			});
 		}
 		case "programa": {
@@ -72,9 +107,19 @@ async function searchRow(table: string, search_param: string) {
 				where: { nome: search_param },
 			});
 		}
-		case "financeiro": {
-			return await db.Financeiro.findAll({
-				where: { cooperados: search_param },
+		case "financeiro_produtor": {
+			return await db.FinanceiroProdutor.findAll({
+				where: { nome_produtor: search_param },
+			});
+		}
+		case "financeiro_programa": {
+			return await db.FinanceiroPrograma.findAll({
+				where: { nome_programa: search_param },
+			});
+		}
+		case "financeiro_funcionario": {
+			return await db.FinanceiroFuncionario.findAll({
+				where: { nome_funcionario: search_param },
 			});
 		}
 		default:
@@ -84,8 +129,8 @@ async function searchRow(table: string, search_param: string) {
 
 async function searchById(table: string, id: number) {
 	switch (table) {
-		case "cooperado": {
-			return await db.Cooperado.findOne({
+		case "produtor": {
+			return await db.Produtor.findOne({
 				where: { id: id },
 			});
 		}
@@ -96,6 +141,21 @@ async function searchById(table: string, id: number) {
 		}
 		case "entrega": {
 			return await db.Entrega.findOne({
+				where: { id: id },
+			});
+		}
+		case "produto": {
+			return await db.Produto.findOne({
+				where: { id: id },
+			});
+		}
+		case "relatorio": {
+			return await db.Relatorio.findOne({
+				where: { id: id },
+			});
+		}
+		case "produto_por_produtor": {
+			return await db.ProdutoPorProdutor.findOne({
 				where: { id: id },
 			});
 		}
@@ -114,8 +174,18 @@ async function searchById(table: string, id: number) {
 				where: { id: id },
 			});
 		}
-		case "financeiro": {
-			return await db.Financeiro.findOne({
+		case "financeiro_produtor": {
+			return await db.FinanceiroProdutor.findOne({
+				where: { id: id },
+			});
+		}
+		case "financeiro_programa": {
+			return await db.FinanceiroPrograma.findOne({
+				where: { id: id },
+			});
+		}
+		case "financeiro_funcionario": {
+			return await db.FinanceiroFuncionario.findOne({
 				where: { id: id },
 			});
 		}

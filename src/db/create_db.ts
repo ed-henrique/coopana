@@ -42,7 +42,7 @@ const Produtor = sequelize.define("Produtor", {
 });
 
 const Relatorio = sequelize.define("Relatorio", {
-	produtor: { type: DataTypes.STRING, allowNull: false },
+	nome_produtor: { type: DataTypes.STRING, allowNull: false },
 	cpf: { type: DataTypes.STRING, allowNull: false },
 	produto: { type: DataTypes.STRING, allowNull: false },
 	valor_unitario: { type: DataTypes.FLOAT, allowNull: false },
@@ -78,7 +78,8 @@ const Produto = sequelize.define("Produto", {
 });
 
 const ProdutoPorProdutor = sequelize.define("ProdutoPorProdutor", {
-	produtor: { type: DataTypes.STRING, allowNull: false },
+	nome_produtor: { type: DataTypes.STRING, allowNull: false },
+	cpf: { type: DataTypes.STRING, allowNull: false },
 	produto: { type: DataTypes.STRING, allowNull: false },
 	quantidade: { type: DataTypes.INTEGER, allowNull: false },
 });
@@ -101,17 +102,17 @@ const Beneficiado = sequelize.define("Beneficiado", {
 });
 
 const FinanceiroProdutor = sequelize.define("FinanceiroProdutor", {
-	produtor: { type: DataTypes.STRING, allowNull: false },
+	nome_produtor: { type: DataTypes.STRING, allowNull: false },
 	valor_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
 const FinanceiroPrograma = sequelize.define("FinanceiroPrograma", {
-	programas: { type: DataTypes.STRING, allowNull: false },
+	nome_programa: { type: DataTypes.STRING, allowNull: false },
 	valor_total: { type: DataTypes.FLOAT, allowNull: false },
 });
 
 const FinanceiroFuncionario = sequelize.define("FinanceiroFuncionario", {
-	funcionarios: { type: DataTypes.STRING, allowNull: false },
+	nome_funcionario: { type: DataTypes.STRING, allowNull: false },
 	salario: { type: DataTypes.FLOAT, allowNull: false },
 });
 

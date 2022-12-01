@@ -2,33 +2,41 @@ import db from "./create_db.js";
 
 async function addToDB(table: string, data: {}) {
 	switch (table) {
-		case "cooperado": {
-			await db.Cooperado.create(data);
-			break;
+		case "produtor": {
+			return await db.Produtor.create(data);
 		}
 		case "veiculo": {
-			await db.Veiculo.create(data);
-			break;
+			return await db.Veiculo.create(data);
 		}
 		case "entrega": {
-			await db.Entrega.create(data);
-			break;
+			return await db.Entrega.create(data);
+		}
+		case "produto": {
+			return await db.Produto.create(data);
+		}
+		case "relatorio": {
+			return await db.Relatorio.create(data);
+		}
+		case "produto_por_produtor": {
+			return await db.ProdutoPorProdutor.create(data);
 		}
 		case "programa": {
-			await db.Programa.create(data);
-			break;
+			return await db.Programa.create(data);
 		}
 		case "funcionario": {
-			await db.Funcionario.create(data);
-			break;
+			return await db.Funcionario.create(data);
 		}
 		case "beneficiado": {
-			await db.Beneficiado.create(data);
-			break;
+			return await db.Beneficiado.create(data);
 		}
-		case "financeiro": {
-			await db.Financeiro.create(data);
-			break;
+		case "financeiro_produtor": {
+			return await db.FinanceiroProdutor.create(data);
+		}
+		case "financeiro_programa": {
+			return await db.FinanceiroPrograma.create(data);
+		}
+		case "financeiro_funcionario": {
+			return await db.FinanceiroFuncionario.create(data);
 		}
 		default:
 			break;
