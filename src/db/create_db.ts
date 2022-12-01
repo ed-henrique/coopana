@@ -1,8 +1,5 @@
 import fs from "fs";
-import * as dotenv from "dotenv";
 import { Sequelize, DataTypes } from "sequelize";
-
-dotenv.config();
 
 /*
 - Add foreign keys
