@@ -9,38 +9,53 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-// GET
+// GET route to search through DB and/or specific tables
 
 router.get("/", async (req, res) => {
-	res.send(await search.showDB());
+	const show_all = req.query.show_all?.toString();
+	const table = req.query.table?.toString().toLowerCase();
+
+	if (show_all) {
+		res.send(await search.showDB());
+	} else {
+		res.send(await search.searchRow(table ?? "", req.body));
+	}
 });
 
-// POST
+// POST route to add data to DB
 
 router.post("/", async (req, res) => {
-	const add_param = !!req.query.add;
-	const del_param = !!req.query.del;
-	const search_param = req.query.search?.toString();
-	const update_param = req.query.update?.toString();
+	const table = req.query.table?.toString().toLowerCase();
+
+	await add.addToDB(table ?? "", req.body);
+	res.json("success");
+});
+
+// PUT route to update data in DB
+
+router.put("/", async (req, res) => {
 	const id = req.query.id?.toString() ?? "";
 	const table = req.query.table?.toString().toLowerCase();
 
-	// Priority Order
-	// ADD -> DEL -> SEARCH -> UPDATE
-
-	if (add_param) {
-		await add.addToDB(table ?? "", req.body);
-		res.json("success");
-	} else if (del_param) {
-		await del.dropRow(table ?? "", parseInt(id));
-		res.json("success");
-	} else if (search_param) {
-		res.send(await search.searchRow(table ?? "", req.body));
-	} else if (update_param) {
+	if (id === "") {
+		res.send("no valid operation passed!");
+	} else {
 		await update.updateRow(table ?? "", parseInt(id), req.body);
 		res.json("success");
-	} else {
+	}
+});
+
+// DELETE route to delete data from DB
+
+router.delete("/", async (req, res) => {
+	const id = req.query.id?.toString() ?? "";
+	const table = req.query.table?.toString().toLowerCase();
+
+	if (id === "") {
 		res.send("no valid operation passed!");
+	} else {
+		await del.dropRow(table ?? "", parseInt(id));
+		res.json("success");
 	}
 });
 

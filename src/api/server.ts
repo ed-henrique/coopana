@@ -4,7 +4,7 @@ import express from "express";
 import db from "../db/create_db.js";
 
 dotenv.config();
-const sequelize = await db.sequelize.authenticate();
+await db.sequelize.authenticate();
 
 const app = express();
 
